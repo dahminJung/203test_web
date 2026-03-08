@@ -32,7 +32,7 @@ export default function Slide6({ onPrev }: Props) {
         >
           {step >= 1 && (
             <TypeWriter
-              text="소중한 시간 내어 봐주셔서 감사합니다. 정다민이 더 좋은 학교를 만들겠습니다."
+              text="소중한 시간 내어 봐주셔서 감사합니다."
               speed={55}
               onDone={() => setStep(2)}
             />
