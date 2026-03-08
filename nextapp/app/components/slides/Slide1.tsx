@@ -14,21 +14,23 @@ export default function Slide1({ onNext, onExit }: Props) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
       <div className="max-w-xl space-y-8">
-        <pre className="text-xs leading-tight text-black font-mono select-none">
-{`  ____  _____  _____
- |___ \\|___ / |___ /
-   __) | |_ \\   |_ \\
-  / __/ ___) | ___) |
- |_____|____/ |____/`}
+        <pre className="text-xs leading-tight text-black font-mono select-none overflow-x-auto">
+{`  __                  ___       ___               __
+ /\\ \\                /\\_ \\     /\\_ \\             /\\ \\
+ \\ \\ \\___       __   \\//\\ \\    \\//\\ \\      ___   \\ \\ \\
+  \\ \\  _ \`\\   /'__\`\\   \\ \\ \\     \\ \\ \\    / __\`\\  \\ \\ \\
+   \\ \\ \\ \\ \\ /\\  __/    \\_\\ \\_    \\_\\ \\_ /\\ \\L\\ \\  \\ \\_\\
+    \\ \\_\\ \\_\\\\ \\____\\   /\\____\\   /\\____\\\\ \\____/   \\/\\_\\
+     \\/_/\\/_/ \\/____/   \\/____/   \\/____/ \\/___/     \\/_/`}
         </pre>
 
         <p className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
           2학년 3반 · 정다민
         </p>
 
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-black min-h-[120px]">
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-black min-h-[60px]">
           <TypeWriter
-            text={"이 사이트를\n왜 만들었냐면요..."}
+            text="안녕하세요, 정다민입니다"
             speed={100}
             onDone={() => setStep(1)}
           />
@@ -37,7 +39,7 @@ export default function Slide1({ onNext, onExit }: Props) {
         <p className="text-lg leading-relaxed text-gray-600 min-h-[56px]" style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}>
           {step >= 1 && (
             <TypeWriter
-              text="공약을 말하기 전에, 먼저 솔직하게 이야기하고 싶었어요. 화면을 넘기면서 확인해 주세요!"
+              text="저의 디자인 실력이 처참하기 때문에 이렇게 사이트로 만나뵙게 되었습니다 :)"
               speed={60}
               onDone={() => setStep(2)}
             />
