@@ -11,8 +11,8 @@ export default function Slide6({ onPrev }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
-      <div className="max-w-lg space-y-8">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-6 text-center">
+      <div className="w-full max-w-lg space-y-6">
         <pre className="text-xs leading-tight text-black font-mono select-none">
 {`  o/
  /|

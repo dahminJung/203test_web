@@ -12,10 +12,10 @@ export default function Slide1({ onNext, onExit }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
-      <div className="max-w-xl space-y-8">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-6 text-center">
+      <div className="w-full max-w-lg space-y-6">
 
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-black min-h-[60px]">
+        <h1 className="text-3xl md:text-5xl font-bold leading-tight text-black">
           <TypeWriter
             text="안녕하세요, 정다민입니다"
             speed={100}
@@ -24,7 +24,7 @@ export default function Slide1({ onNext, onExit }: Props) {
         </h1>
 
         <p
-          className="text-lg leading-relaxed text-gray-600 min-h-[56px]"
+          className="text-base md:text-lg leading-relaxed text-gray-600"
           style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
         >
           {step >= 1 && (
@@ -37,7 +37,7 @@ export default function Slide1({ onNext, onExit }: Props) {
         </p>
 
         <div
-          className="flex flex-col sm:flex-row gap-3 justify-center pt-4"
+          className="flex flex-col sm:flex-row gap-3 justify-center"
           style={{ opacity: step >= 2 ? 1 : 0, transition: "opacity 0.5s" }}
         >
           <button

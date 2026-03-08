@@ -19,13 +19,13 @@ export default function Slide4({ onNext, onPrev }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
-      <div className="max-w-xl space-y-8">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-6 text-center">
+      <div className="w-full max-w-lg space-y-6">
         <p className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
           기본기
         </p>
 
-        <h2 className="text-3xl md:text-4xl font-bold leading-tight text-black min-h-[96px]">
+        <h2 className="text-2xl md:text-4xl font-bold leading-tight text-black">
           <TypeWriter
             text={"물론! 회장으로써의 '기본'은\n준비되어 있습니다 ;)"}
             speed={90}

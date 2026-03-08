@@ -12,13 +12,13 @@ export default function Slide5({ onNext, onPrev }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
-      <div className="max-w-xl space-y-8">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-6 text-center">
+      <div className="w-full max-w-lg space-y-6">
         <p className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
           마무리하며
         </p>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight min-h-[48px]">
+        <h2 className="text-2xl md:text-4xl font-bold text-black leading-tight">
           <TypeWriter text="너무 급하게 준비했지만..." speed={100} onDone={() => setStep(1)} />
         </h2>
 

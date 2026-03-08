@@ -16,13 +16,13 @@ export default function Slide3({ onNext, onPrev }: Props) {
   const [voted, setVoted] = useState(false);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
-      <div className="max-w-lg w-full space-y-6">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-6 text-center">
+      <div className="w-full max-w-lg space-y-5">
         <p className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
           투표 예시
         </p>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-black min-h-[48px]">
+        <h2 className="text-2xl md:text-4xl font-bold text-black">
           <TypeWriter text="이렇게 투표하게 돼요!" speed={100} onDone={() => setStep(1)} />
         </h2>
 
