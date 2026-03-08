@@ -3,12 +3,13 @@
 import { useState, useCallback } from "react";
 import Slide1 from "./slides/Slide1";
 import Slide2 from "./slides/Slide2";
+import SlidePromise from "./slides/SlidePromise";
 import Slide3 from "./slides/Slide3";
 import Slide4 from "./slides/Slide4";
 import Slide5 from "./slides/Slide5";
 import Slide6 from "./slides/Slide6";
 
-const TOTAL_SLIDES = 6;
+const TOTAL_SLIDES = 7;
 
 export default function SlideShow() {
   const [current, setCurrent] = useState(0);
@@ -32,22 +33,21 @@ export default function SlideShow() {
   const prev = useCallback(() => goTo(current - 1), [goTo, current]);
   const exit = useCallback(() => {
     window.close();
-    // fallback if window.close() doesn't work
     window.location.href = "about:blank";
   }, []);
 
   const slides = [
     <Slide1 key={0} onNext={next} onExit={exit} />,
     <Slide2 key={1} onNext={next} onPrev={prev} />,
-    <Slide3 key={2} onNext={next} onPrev={prev} />,
-    <Slide4 key={3} onNext={next} onPrev={prev} />,
-    <Slide5 key={4} onNext={next} onPrev={prev} />,
-    <Slide6 key={5} onPrev={prev} />,
+    <SlidePromise key={2} onNext={next} onPrev={prev} />,
+    <Slide3 key={3} onNext={next} onPrev={prev} />,
+    <Slide4 key={4} onNext={next} onPrev={prev} />,
+    <Slide5 key={5} onNext={next} onPrev={prev} />,
+    <Slide6 key={6} onPrev={prev} />,
   ];
 
   return (
     <div className="relative w-full h-full overflow-hidden">
-      {/* slide */}
       <div
         key={current}
         style={{
