@@ -14,19 +14,6 @@ export default function Slide1({ onNext, onExit }: Props) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
       <div className="max-w-xl space-y-8">
-        <pre className="text-xs leading-tight text-black font-mono select-none overflow-x-auto">
-{`  __                  ___       ___               __
- /\\ \\                /\\_ \\     /\\_ \\             /\\ \\
- \\ \\ \\___       __   \\//\\ \\    \\//\\ \\      ___   \\ \\ \\
-  \\ \\  _ \`\\   /'__\`\\   \\ \\ \\     \\ \\ \\    / __\`\\  \\ \\ \\
-   \\ \\ \\ \\ \\ /\\  __/    \\_\\ \\_    \\_\\ \\_ /\\ \\L\\ \\  \\ \\_\\
-    \\ \\_\\ \\_\\\\ \\____\\   /\\____\\   /\\____\\\\ \\____/   \\/\\_\\
-     \\/_/\\/_/ \\/____/   \\/____/   \\/____/ \\/___/     \\/_/`}
-        </pre>
-
-        <p className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
-          2학년 3반 · 정다민
-        </p>
 
         <h1 className="text-4xl md:text-5xl font-bold leading-tight text-black min-h-[60px]">
           <TypeWriter
@@ -36,7 +23,10 @@ export default function Slide1({ onNext, onExit }: Props) {
           />
         </h1>
 
-        <p className="text-lg leading-relaxed text-gray-600 min-h-[56px]" style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}>
+        <p
+          className="text-lg leading-relaxed text-gray-600 min-h-[56px]"
+          style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
+        >
           {step >= 1 && (
             <TypeWriter
               text="저의 디자인 실력이 처참하기 때문에 이렇게 사이트로 만나뵙게 되었습니다 :)"
@@ -46,7 +36,10 @@ export default function Slide1({ onNext, onExit }: Props) {
           )}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4" style={{ opacity: step >= 2 ? 1 : 0, transition: "opacity 0.5s" }}>
+        <div
+          className="flex flex-col sm:flex-row gap-3 justify-center pt-4"
+          style={{ opacity: step >= 2 ? 1 : 0, transition: "opacity 0.5s" }}
+        >
           <button
             onClick={onNext}
             disabled={step < 2}
@@ -62,6 +55,7 @@ export default function Slide1({ onNext, onExit }: Props) {
             나가기 [x]
           </button>
         </div>
+
       </div>
     </div>
   );
