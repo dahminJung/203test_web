@@ -1,40 +1,76 @@
 "use client";
 
+import { useState } from "react";
+import TypeWriter from "../TypeWriter";
+
 interface Props {
   onNext: () => void;
   onPrev: () => void;
 }
 
 export default function Slide5({ onNext, onPrev }: Props) {
+  const [step, setStep] = useState(0);
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
       <div className="max-w-xl space-y-8">
         <p className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
           마무리하며
         </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-          너무 급하게 준비했지만...
+
+        <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight min-h-[48px]">
+          <TypeWriter text="너무 급하게 준비했지만..." speed={55} onDone={() => setStep(1)} />
         </h2>
 
-        <div className="border-2 border-black rounded-2xl p-7 text-left space-y-4">
-          <p className="text-lg leading-relaxed text-gray-700">
-            급하게 준비하다 보니 많이 부실한 것 같지만,
-          </p>
-          <p className="font-semibold text-xl leading-relaxed text-black">
-            자세한 내용은{" "}
-            <span className="underline decoration-dotted underline-offset-4">수요일</span>에
-            직접 말씀드리도록 하겠습니다!
-          </p>
-          <p className="text-sm text-gray-400">
-            끝까지 봐주셔서 진심으로 감사합니다.
-          </p>
+        <div
+          className="border-2 border-black rounded-2xl p-7 text-left space-y-4 transition-opacity duration-500"
+          style={{ opacity: step >= 1 ? 1 : 0 }}
+        >
+          {step >= 1 && (
+            <>
+              <p className="text-lg leading-relaxed text-gray-700">
+                <TypeWriter
+                  text="급하게 준비하다 보니 많이 부실한 것 같지만,"
+                  speed={30}
+                  onDone={() => setStep(2)}
+                />
+              </p>
+              <p
+                className="font-semibold text-xl leading-relaxed text-black transition-opacity duration-500"
+                style={{ opacity: step >= 2 ? 1 : 0 }}
+              >
+                {step >= 2 && (
+                  <TypeWriter
+                    text="자세한 내용은 수요일에 직접 말씀드리도록 하겠습니다!"
+                    speed={35}
+                    onDone={() => setStep(3)}
+                  />
+                )}
+              </p>
+              <p
+                className="text-sm text-gray-400 transition-opacity duration-500"
+                style={{ opacity: step >= 3 ? 1 : 0 }}
+              >
+                끝까지 봐주셔서 진심으로 감사합니다.
+              </p>
+            </>
+          )}
         </div>
 
-        <p className="text-black font-medium">-- 2학년 3반 정다민 ;)</p>
+        <p
+          className="text-black font-medium transition-opacity duration-500"
+          style={{ opacity: step >= 3 ? 1 : 0 }}
+        >
+          -- 2학년 3반 정다민 ;)
+        </p>
 
-        <div className="flex gap-3 justify-center pt-2">
+        <div
+          className="flex gap-3 justify-center pt-2 transition-opacity duration-500"
+          style={{ opacity: step >= 3 ? 1 : 0 }}
+        >
           <button
             onClick={onPrev}
+            disabled={step < 3}
             aria-label="이전 슬라이드"
             className="px-6 py-3 border-2 border-black text-black font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 outline-none"
           >
@@ -42,6 +78,7 @@ export default function Slide5({ onNext, onPrev }: Props) {
           </button>
           <button
             onClick={onNext}
+            disabled={step < 3}
             className="px-8 py-3 bg-black text-white font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 outline-none"
           >
             마지막 --&gt;
