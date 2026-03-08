@@ -12,10 +12,10 @@ export default function Slide1({ onNext, onExit }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-6 text-center">
-      <div className="w-full max-w-lg space-y-6">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-5 text-center overflow-y-auto py-8">
+      <div className="w-full max-w-sm space-y-5">
 
-        <h1 className="text-3xl md:text-5xl font-bold leading-tight text-black">
+        <h1 className="text-2xl md:text-4xl font-bold leading-tight text-black">
           <TypeWriter
             text="안녕하세요, 정다민입니다"
             speed={100}
@@ -24,7 +24,7 @@ export default function Slide1({ onNext, onExit }: Props) {
         </h1>
 
         <p
-          className="text-base md:text-lg leading-relaxed text-gray-600"
+          className="text-sm md:text-base leading-relaxed text-gray-600"
           style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
         >
           {step >= 1 && (
@@ -43,14 +43,14 @@ export default function Slide1({ onNext, onExit }: Props) {
           <button
             onClick={onNext}
             disabled={step < 2}
-            className="px-8 py-3 bg-black text-white font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+            className="px-6 py-2.5 bg-black text-white text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             다음 페이지 --&gt;
           </button>
           <button
             onClick={onExit}
             disabled={step < 2}
-            className="px-8 py-3 border-2 border-black text-black font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+            className="px-6 py-2.5 border-2 border-black text-black text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             나가기 [x]
           </button>
