@@ -66,7 +66,7 @@ export default function SlideShow() {
 
       {/* progress dots */}
       <div
-        className="absolute bottom-6 left-1/2 flex gap-2"
+        className="absolute bottom-6 left-1/2 flex gap-2 items-center"
         style={{ transform: "translateX(-50%)" }}
         aria-label="슬라이드 진행 표시"
       >
@@ -75,10 +75,10 @@ export default function SlideShow() {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`${i + 1}번 슬라이드로 이동`}
-            className="w-2 h-2 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+            className="h-1.5 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 transition-[width,background-color] duration-300"
             style={{
-              backgroundColor: i === current ? "#000" : "#ccc",
-              transform: i === current ? "scale(1.25)" : "scale(1)",
+              width: i === current ? "16px" : "6px",
+              backgroundColor: i === current ? "#000" : "rgba(0,0,0,0.2)",
             }}
           />
         ))}

@@ -12,10 +12,16 @@ export default function Slide1({ onNext, onExit }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-5 text-center overflow-y-auto py-8">
-      <div className="w-full max-w-sm space-y-5">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-[#fafafa] px-5 text-center overflow-y-auto py-8">
+      <div className="w-full max-w-sm space-y-5 animate-fade-slide-up">
 
-        <h1 className="text-2xl md:text-4xl font-bold leading-tight text-black">
+        <p className="text-xs text-black/40 uppercase tracking-widest">
+          전교 회장 후보
+        </p>
+
+        <div className="w-8 h-px bg-black/20 mx-auto" />
+
+        <h1 className="text-2xl md:text-4xl font-bold leading-tight text-black tracking-tight">
           <TypeWriter
             text="안녕하세요, 정다민입니다"
             speed={100}
@@ -24,7 +30,7 @@ export default function Slide1({ onNext, onExit }: Props) {
         </h1>
 
         <p
-          className="text-sm md:text-base leading-relaxed text-gray-600"
+          className="text-sm leading-relaxed text-black/70"
           style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
         >
           {step >= 1 && (
@@ -43,14 +49,14 @@ export default function Slide1({ onNext, onExit }: Props) {
           <button
             onClick={onNext}
             disabled={step < 2}
-            className="px-6 py-2.5 bg-black text-white text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+            className="bg-black text-white rounded-full px-6 py-2.5 text-sm font-medium shadow-sm hover:shadow-md hover:opacity-90 transition-shadow transition-opacity duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             다음 페이지 --&gt;
           </button>
           <button
             onClick={onExit}
             disabled={step < 2}
-            className="px-6 py-2.5 border-2 border-black text-black text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+            className="border border-black/20 text-black rounded-full px-5 py-2.5 text-sm font-medium hover:border-black/60 transition-[border-color] duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             나가기 [x]
           </button>

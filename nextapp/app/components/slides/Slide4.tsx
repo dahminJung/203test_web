@@ -9,24 +9,26 @@ interface Props {
 }
 
 const BASICS = [
-  { mark: "[1]", text: "학생들의 의견을 경청하기" },
-  { mark: "[2]", text: "선생님과 학생 사이의 가교 역할" },
-  { mark: "[3]", text: "학교 행사 적극 참여 및 기획" },
-  { mark: "[4]", text: "솔직하고 투명한 소통" },
+  { mark: "01", text: "학생들의 의견을 경청하기" },
+  { mark: "02", text: "선생님과 학생 사이의 가교 역할" },
+  { mark: "03", text: "학교 행사 적극 참여 및 기획" },
+  { mark: "04", text: "솔직하고 투명한 소통" },
 ];
 
 export default function Slide4({ onNext, onPrev }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-5 text-center overflow-y-auto py-8">
-      <div className="w-full max-w-sm space-y-5">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-[#fafafa] px-5 text-center overflow-y-auto py-8">
+      <div className="w-full max-w-sm space-y-5 animate-fade-slide-up">
 
-        <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">
+        <p className="text-xs text-black/40 uppercase tracking-widest">
           기본기
         </p>
 
-        <h2 className="text-xl md:text-3xl font-bold leading-tight text-black">
+        <div className="w-8 h-px bg-black/20 mx-auto" />
+
+        <h2 className="text-xl md:text-3xl font-bold leading-tight text-black tracking-tight">
           <TypeWriter
             text={"물론! 회장으로써의 '기본'은\n준비되어 있습니다 ;)"}
             speed={90}
@@ -35,7 +37,7 @@ export default function Slide4({ onNext, onPrev }: Props) {
         </h2>
 
         <p
-          className="text-sm text-gray-500"
+          className="text-sm text-black/50"
           style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
         >
           {step >= 1 && (
@@ -51,13 +53,13 @@ export default function Slide4({ onNext, onPrev }: Props) {
           {BASICS.map((item, i) => (
             <li
               key={i}
-              className="flex items-center gap-3 border-2 border-black rounded-xl px-4 py-3"
+              className="flex items-center gap-3 bg-white border border-black/10 shadow-sm rounded-2xl px-4 py-3"
               style={{
                 opacity: step >= 2 ? 1 : 0,
                 transition: `opacity 0.4s ease ${i * 150}ms`,
               }}
             >
-              <span className="font-mono font-bold text-black text-sm">{item.mark}</span>
+              <span className="font-mono font-bold text-black/30 text-xs">{item.mark}</span>
               <span className="text-sm font-medium text-black">{item.text}</span>
             </li>
           ))}
@@ -71,14 +73,14 @@ export default function Slide4({ onNext, onPrev }: Props) {
             onClick={onPrev}
             disabled={step < 2}
             aria-label="이전 슬라이드"
-            className="px-5 py-2.5 border-2 border-black text-black text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+            className="border border-black/20 text-black rounded-full px-5 py-2.5 text-sm font-medium hover:border-black/60 transition-[border-color] duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             &lt;-- 이전
           </button>
           <button
             onClick={onNext}
             disabled={step < 2}
-            className="px-6 py-2.5 bg-black text-white text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+            className="bg-black text-white rounded-full px-6 py-2.5 text-sm font-medium shadow-sm hover:shadow-md hover:opacity-90 transition-shadow transition-opacity duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             다음 --&gt;
           </button>

@@ -27,10 +27,10 @@ export default function Slide3({ onNext, onPrev }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-5 text-center overflow-y-auto py-8">
-      <div className="w-full max-w-sm space-y-5">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-[#fafafa] px-5 text-center overflow-y-auto py-8">
+      <div className="w-full max-w-sm space-y-5 animate-fade-slide-up">
 
-        <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">
+        <p className="text-xs text-black/40 uppercase tracking-widest">
           <TypeWriter
             text="어떻게 진행될지 모르시겠다면.."
             speed={60}
@@ -38,8 +38,10 @@ export default function Slide3({ onNext, onPrev }: Props) {
           />
         </p>
 
+        <div className="w-8 h-px bg-black/20 mx-auto" />
+
         <h2
-          className="text-xl md:text-3xl font-bold text-black"
+          className="text-xl md:text-3xl font-bold text-black tracking-tight"
           style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
         >
           {step >= 1 && (
@@ -55,18 +57,18 @@ export default function Slide3({ onNext, onPrev }: Props) {
           {STEPS.map((s, i) => (
             <div key={i}>
               <div
-                className="border-2 border-black rounded-xl px-4 py-3 space-y-1"
+                className="border-l-2 border-l-black border border-black/10 shadow-sm bg-white rounded-xl px-4 py-3 space-y-1"
                 style={{
                   opacity: step >= i + 2 ? 1 : 0,
                   transition: `opacity 0.5s ease`,
                 }}
               >
-                <p className="text-sm font-bold text-black">{s.label}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{s.desc}</p>
+                <p className="text-sm font-medium text-black">{s.label}</p>
+                <p className="text-xs leading-relaxed text-black/70">{s.desc}</p>
               </div>
               {i < STEPS.length - 1 && (
                 <div
-                  className="text-center text-gray-400 text-lg leading-none py-1"
+                  className="text-center text-black/30 text-lg leading-none py-1"
                   style={{
                     opacity: step >= i + 3 ? 1 : 0,
                     transition: "opacity 0.3s ease",
@@ -113,14 +115,14 @@ export default function Slide3({ onNext, onPrev }: Props) {
             onClick={onPrev}
             disabled={step < 5}
             aria-label="이전 슬라이드"
-            className="px-5 py-2.5 border-2 border-black text-black text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 outline-none"
+            className="border border-black/20 text-black rounded-full px-5 py-2.5 text-sm font-medium hover:border-black/60 transition-[border-color] duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             &lt;-- 이전
           </button>
           <button
             onClick={onNext}
             disabled={step < 5}
-            className="px-6 py-2.5 bg-black text-white text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 outline-none"
+            className="bg-black text-white rounded-full px-6 py-2.5 text-sm font-medium shadow-sm hover:shadow-md hover:opacity-90 transition-shadow transition-opacity duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             다음 --&gt;
           </button>

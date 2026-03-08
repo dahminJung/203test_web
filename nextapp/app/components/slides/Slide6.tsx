@@ -11,21 +11,23 @@ export default function Slide6({ onPrev }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-5 text-center overflow-y-auto py-8">
-      <div className="w-full max-w-sm space-y-5">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-[#fafafa] px-5 text-center overflow-y-auto py-8">
+      <div className="w-full max-w-sm space-y-5 animate-fade-slide-up">
 
-        <pre className="text-xs leading-tight text-black font-mono select-none">
+        <pre className="text-xs leading-tight text-black/40 font-mono select-none">
 {`  o/
  /|
  / \\`}
         </pre>
 
-        <h2 className="text-2xl md:text-4xl font-bold text-black">
+        <div className="w-8 h-px bg-black/20 mx-auto" />
+
+        <h2 className="text-2xl md:text-4xl font-bold text-black tracking-tight">
           <TypeWriter text="안녕히 가세요!" speed={110} onDone={() => setStep(1)} />
         </h2>
 
         <p
-          className="text-sm md:text-base leading-relaxed text-gray-600"
+          className="text-sm leading-relaxed text-black/70"
           style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
         >
           {step >= 1 && (
@@ -38,10 +40,10 @@ export default function Slide6({ onPrev }: Props) {
         </p>
 
         <div
-          className="border-2 border-black rounded-xl px-5 py-4"
+          className="bg-white border border-black/10 shadow-sm rounded-2xl px-5 py-4"
           style={{ opacity: step >= 2 ? 1 : 0, transition: "opacity 0.5s" }}
         >
-          <p className="font-mono text-xs text-black">
+          <p className="font-mono text-xs text-black/60">
             &gt; 수요일 연설에서 더 자세히 만나요_
           </p>
         </div>
@@ -50,7 +52,7 @@ export default function Slide6({ onPrev }: Props) {
           onClick={onPrev}
           disabled={step < 2}
           aria-label="이전 슬라이드"
-          className="px-5 py-2.5 border-2 border-black text-black text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
+          className="border border-black/20 text-black rounded-full px-5 py-2.5 text-sm font-medium hover:border-black/60 transition-[border-color] duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           style={{ opacity: step >= 2 ? 1 : 0, transition: "opacity 0.5s" }}
         >
           &lt;-- 이전으로
