@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface Props {
   text: string;
@@ -9,13 +9,20 @@ interface Props {
   onDone?: () => void;
 }
 
-export default function TypeWriter({ text, speed = 40, className = "", onDone }: Props) {
+export default function TypeWriter({ text, speed = 80, className = "", onDone }: Props) {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
+  const onDoneRef = useRef(onDone);
+  const startedRef = useRef(false);
 
   useEffect(() => {
-    setDisplayed("");
-    setDone(false);
+    onDoneRef.current = onDone;
+  }, [onDone]);
+
+  useEffect(() => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+
     let i = 0;
     const interval = setInterval(() => {
       i++;
@@ -23,18 +30,18 @@ export default function TypeWriter({ text, speed = 40, className = "", onDone }:
       if (i >= text.length) {
         clearInterval(interval);
         setDone(true);
-        onDone?.();
+        onDoneRef.current?.();
       }
     }, speed);
+
     return () => clearInterval(interval);
-  }, [text, speed, onDone]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <span className={className}>
       {displayed}
-      {!done && (
-        <span className="animate-pulse">|</span>
-      )}
+      {!done && <span className="animate-pulse">|</span>}
     </span>
   );
 }

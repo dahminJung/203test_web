@@ -29,28 +29,22 @@ export default function Slide1({ onNext, onExit }: Props) {
         <h1 className="text-4xl md:text-5xl font-bold leading-tight text-black min-h-[120px]">
           <TypeWriter
             text={"이 사이트를\n왜 만들었냐면요..."}
-            speed={50}
+            speed={100}
             onDone={() => setStep(1)}
           />
         </h1>
 
-        <p
-          className="text-lg leading-relaxed text-gray-600 min-h-[56px] transition-opacity duration-500"
-          style={{ opacity: step >= 1 ? 1 : 0 }}
-        >
+        <p className="text-lg leading-relaxed text-gray-600 min-h-[56px]" style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}>
           {step >= 1 && (
             <TypeWriter
               text="공약을 말하기 전에, 먼저 솔직하게 이야기하고 싶었어요. 화면을 넘기면서 확인해 주세요!"
-              speed={30}
+              speed={60}
               onDone={() => setStep(2)}
             />
           )}
         </p>
 
-        <div
-          className="flex flex-col sm:flex-row gap-3 justify-center pt-4 transition-opacity duration-500"
-          style={{ opacity: step >= 2 ? 1 : 0 }}
-        >
+        <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4" style={{ opacity: step >= 2 ? 1 : 0, transition: "opacity 0.5s" }}>
           <button
             onClick={onNext}
             disabled={step < 2}
