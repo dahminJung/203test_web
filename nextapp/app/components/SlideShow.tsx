@@ -70,18 +70,24 @@ export default function SlideShow() {
         style={{ transform: "translateX(-50%)" }}
         aria-label="슬라이드 진행 표시"
       >
-        {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            aria-label={`${i + 1}번 슬라이드로 이동`}
-            className={`w-2 h-2 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 outline-none ${
-              i === current
-                ? "bg-white scale-125"
-                : "bg-white/40 hover:bg-white/70"
-            }`}
-          />
-        ))}
+        {Array.from({ length: TOTAL_SLIDES }).map((_, i) => {
+          // 흰 배경 슬라이드(2,4,6): dot은 #91A6FF / 파란 배경(1,3,5): dot은 white
+          const isWhiteBg = current % 2 === 1;
+          const activeColor = isWhiteBg ? "#91A6FF" : "#ffffff";
+          const inactiveColor = isWhiteBg ? "#91A6FF55" : "#ffffff55";
+          return (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`${i + 1}번 슬라이드로 이동`}
+              className="w-2 h-2 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 outline-none"
+              style={{
+                backgroundColor: i === current ? activeColor : inactiveColor,
+                transform: i === current ? "scale(1.25)" : "scale(1)",
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
