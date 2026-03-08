@@ -40,7 +40,7 @@ export default function Slide4({ onNext, onPrev }: Props) {
         >
           {step >= 1 && (
             <TypeWriter
-              text="이래봐도 작년 상점 전교 2등 히힣)"
+              text="(이래봐도 작년 상점 전교 2등 히힣)"
               speed={70}
               onDone={() => setStep(2)}
             />
