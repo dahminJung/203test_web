@@ -5,13 +5,14 @@ import TypeWriter from "../TypeWriter";
 
 interface Props {
   onPrev: () => void;
+  bg: string;
 }
 
-export default function Slide6({ onPrev }: Props) {
+export default function Slide6({ onPrev, bg }: Props) {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-[#fafafa] px-5 text-center overflow-y-auto py-8">
+    <div style={{ backgroundColor: bg }} className="w-full h-full flex flex-col items-center justify-center px-5 text-center overflow-y-auto py-8">
       <div className="w-full max-w-sm space-y-5 animate-fade-slide-up">
 
         <pre className="text-xs leading-tight text-black/40 font-mono select-none">

@@ -8,13 +8,25 @@ import Slide3 from "./slides/Slide3";
 import Slide4 from "./slides/Slide4";
 import Slide5 from "./slides/Slide5";
 import Slide6 from "./slides/Slide6";
+import PrincessModal from "./PrincessModal";
 
 const TOTAL_SLIDES = 7;
+
+function isPrincessHour(): boolean {
+  const hour = new Date().getHours();
+  return hour >= 9 && hour < 14;
+}
 
 export default function SlideShow() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev">("next");
   const [animating, setAnimating] = useState(false);
+  const [showPrincessModal, setShowPrincessModal] = useState(false);
+  const [isPrincess, setIsPrincess] = useState(false);
+
+  const bg = isPrincess ? "#ffd6e7" : "#fafafa";
+  const dotActive = isPrincess ? "#e879a0" : "#000";
+  const dotInactive = isPrincess ? "rgba(232,121,160,0.3)" : "rgba(0,0,0,0.2)";
 
   const goTo = useCallback(
     (index: number) => {
@@ -36,14 +48,34 @@ export default function SlideShow() {
     window.location.href = "about:blank";
   }, []);
 
+  // Slide1의 "다음 페이지" 버튼 → 시간 체크 후 모달 or 바로 이동
+  const handleSlide1Next = useCallback(() => {
+    if (isPrincessHour()) {
+      setShowPrincessModal(true);
+    } else {
+      goTo(1);
+    }
+  }, [goTo]);
+
+  const handlePrincessAccept = useCallback(() => {
+    setIsPrincess(true);
+    setShowPrincessModal(false);
+    goTo(1);
+  }, [goTo]);
+
+  const handlePrincessSkip = useCallback(() => {
+    setShowPrincessModal(false);
+    goTo(1);
+  }, [goTo]);
+
   const slides = [
-    <Slide1 key={0} onNext={next} onExit={exit} />,
-    <Slide2 key={1} onNext={next} onPrev={prev} />,
-    <SlidePromise key={2} onNext={next} onPrev={prev} />,
-    <Slide3 key={3} onNext={next} onPrev={prev} />,
-    <Slide4 key={4} onNext={next} onPrev={prev} />,
-    <Slide5 key={5} onNext={next} onPrev={prev} />,
-    <Slide6 key={6} onPrev={prev} />,
+    <Slide1 key={0} onNext={handleSlide1Next} onExit={exit} bg={bg} />,
+    <Slide2 key={1} onNext={next} onPrev={prev} bg={bg} />,
+    <SlidePromise key={2} onNext={next} onPrev={prev} bg={bg} />,
+    <Slide3 key={3} onNext={next} onPrev={prev} bg={bg} />,
+    <Slide4 key={4} onNext={next} onPrev={prev} bg={bg} />,
+    <Slide5 key={5} onNext={next} onPrev={prev} bg={bg} />,
+    <Slide6 key={6} onPrev={prev} bg={bg} />,
   ];
 
   return (
@@ -75,14 +107,22 @@ export default function SlideShow() {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`${i + 1}번 슬라이드로 이동`}
-            className="h-1.5 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 transition-[width,background-color] duration-300"
+            className="h-1.5 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-[width,background-color] duration-300"
             style={{
               width: i === current ? "16px" : "6px",
-              backgroundColor: i === current ? "#000" : "rgba(0,0,0,0.2)",
+              backgroundColor: i === current ? dotActive : dotInactive,
             }}
           />
         ))}
       </div>
+
+      {/* 공주님 모달 */}
+      {showPrincessModal && (
+        <PrincessModal
+          onAccept={handlePrincessAccept}
+          onSkip={handlePrincessSkip}
+        />
+      )}
     </div>
   );
 }
