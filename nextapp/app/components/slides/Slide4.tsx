@@ -34,13 +34,26 @@ export default function Slide4({ onNext, onPrev }: Props) {
           />
         </h2>
 
+        <p
+          className="text-sm text-gray-500"
+          style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.3s" }}
+        >
+          {step >= 1 && (
+            <TypeWriter
+              text="이래봐도 작년 상점 전교 2등 히힣)"
+              speed={70}
+              onDone={() => setStep(2)}
+            />
+          )}
+        </p>
+
         <ul className="space-y-2 text-left" aria-label="회장 기본 역량 목록">
           {BASICS.map((item, i) => (
             <li
               key={i}
               className="flex items-center gap-3 border-2 border-black rounded-xl px-4 py-3"
               style={{
-                opacity: step >= 1 ? 1 : 0,
+                opacity: step >= 2 ? 1 : 0,
                 transition: `opacity 0.4s ease ${i * 150}ms`,
               }}
             >
@@ -52,11 +65,11 @@ export default function Slide4({ onNext, onPrev }: Props) {
 
         <div
           className="flex gap-3 justify-center"
-          style={{ opacity: step >= 1 ? 1 : 0, transition: "opacity 0.5s ease 600ms" }}
+          style={{ opacity: step >= 2 ? 1 : 0, transition: "opacity 0.5s ease 600ms" }}
         >
           <button
             onClick={onPrev}
-            disabled={step < 1}
+            disabled={step < 2}
             aria-label="이전 슬라이드"
             className="px-5 py-2.5 border-2 border-black text-black text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
@@ -64,7 +77,7 @@ export default function Slide4({ onNext, onPrev }: Props) {
           </button>
           <button
             onClick={onNext}
-            disabled={step < 1}
+            disabled={step < 2}
             className="px-6 py-2.5 bg-black text-white text-sm font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
           >
             다음 --&gt;
