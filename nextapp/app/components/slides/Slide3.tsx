@@ -13,23 +13,13 @@ export default function Slide3({ onNext, onPrev }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const [voted, setVoted] = useState(false);
 
-  const handleVote = () => {
-    if (selected === null) return;
-    setVoted(true);
-  };
-
-  const handleReset = () => {
-    setSelected(null);
-    setVoted(false);
-  };
-
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-8 text-center" style={{ backgroundColor: "#91A6FF" }}>
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white px-8 text-center">
       <div className="max-w-lg w-full space-y-6">
-        <p className="text-sm uppercase tracking-widest font-semibold" style={{ color: "#ffffffaa" }}>
+        <p className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
           투표 예시
         </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white">
+        <h2 className="text-3xl md:text-4xl font-bold text-black">
           이렇게 투표하게 돼요!
         </h2>
 
@@ -40,10 +30,7 @@ export default function Slide3({ onNext, onPrev }: Props) {
                 <label
                   key={i}
                   className="flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-colors duration-200"
-                  style={{
-                    borderColor: selected === i ? "#ffffff" : "#ffffff55",
-                    backgroundColor: selected === i ? "#ffffff22" : "transparent",
-                  }}
+                  style={{ borderColor: selected === i ? "#000" : "#ccc" }}
                 >
                   <input
                     type="radio"
@@ -51,40 +38,48 @@ export default function Slide3({ onNext, onPrev }: Props) {
                     value={i}
                     checked={selected === i}
                     onChange={() => setSelected(i)}
-                    className="w-5 h-5"
+                    className="w-5 h-5 accent-black"
                   />
-                  <span className="font-medium text-lg text-white">
-                    {i === 0 ? <>{name} <span className="text-sm font-normal opacity-70">← 저예요 😊</span></> : name}
+                  <span className="font-medium text-lg text-black">
+                    {i === 0
+                      ? <>{name} <span className="text-sm font-normal text-gray-400">&lt;-- 저예요</span></>
+                      : name}
                   </span>
                 </label>
               ))}
             </div>
 
             <button
-              onClick={handleVote}
+              onClick={() => selected !== null && setVoted(true)}
               disabled={selected === null}
-              className="w-full py-3 font-semibold rounded-xl transition-opacity duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 outline-none"
+              className="w-full py-3 font-semibold rounded-xl border-2 border-black transition-opacity duration-200 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none"
               style={{
-                backgroundColor: selected === null ? "#ffffff44" : "#ffffff",
-                color: selected === null ? "#ffffffaa" : "#91A6FF",
+                backgroundColor: selected !== null ? "#000" : "#fff",
+                color: selected !== null ? "#fff" : "#ccc",
+                borderColor: selected !== null ? "#000" : "#ccc",
                 cursor: selected === null ? "not-allowed" : "pointer",
               }}
             >
-              {selected === null ? "후보를 선택해 주세요" : "투표하기"}
+              {selected === null ? "후보를 선택해 주세요" : "투표하기 [ENTER]"}
             </button>
           </>
         ) : (
           <div className="space-y-4">
-            <div className="text-6xl">🎉</div>
-            <p className="text-2xl font-bold text-white">
+            <pre className="text-sm leading-tight text-black font-mono select-none">
+{`  _____  _  _
+ |_   _|| || |  /\\  /\\
+   | |  | __ | / //\\ \\
+   |_|  |_||_|/_/    \\_\\`}
+            </pre>
+            <p className="text-2xl font-bold text-black">
               {selected === 0 ? "감사합니다!!" : "소중한 한 표 감사합니다!"}
             </p>
-            <p style={{ color: "#ffffffcc" }}>실제 투표일에도 꼭 참여해 주세요.</p>
+            <p className="text-gray-500">실제 투표일에도 꼭 참여해 주세요.</p>
             <button
-              onClick={handleReset}
-              className="px-6 py-2 rounded-full text-sm border-2 border-white text-white transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 outline-none"
+              onClick={() => { setSelected(null); setVoted(false); }}
+              className="px-6 py-2 rounded-full text-sm border-2 border-black text-black transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 outline-none"
             >
-              다시 해보기
+              [reset] 다시 해보기
             </button>
           </div>
         )}
@@ -93,16 +88,15 @@ export default function Slide3({ onNext, onPrev }: Props) {
           <button
             onClick={onPrev}
             aria-label="이전 슬라이드"
-            className="px-6 py-3 font-semibold rounded-full border-2 border-white text-white transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 outline-none"
+            className="px-6 py-3 border-2 border-black text-black font-semibold rounded-full transition-opacity duration-200 hover:opacity-50 focus-visible:ring-2 outline-none"
           >
-            ← 이전
+            &lt;-- 이전
           </button>
           <button
             onClick={onNext}
-            className="px-8 py-3 font-semibold rounded-full transition-opacity duration-200 hover:opacity-80 focus-visible:ring-2 outline-none"
-            style={{ backgroundColor: "#ffffff", color: "#91A6FF" }}
+            className="px-8 py-3 bg-black text-white font-semibold rounded-full transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 outline-none"
           >
-            다음 →
+            다음 --&gt;
           </button>
         </div>
       </div>
